@@ -1,6 +1,6 @@
 import { Arg, Mutation, Query, Resolver } from 'type-graphql';
 import Order from '../../models/order';
-import OrderInput from './type';
+import OrderInput from './ordersType';
 
 @Resolver()
 export default class OrderResolver {

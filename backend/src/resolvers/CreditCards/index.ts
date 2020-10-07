@@ -1,10 +1,9 @@
-import { UpdateCreditCard } from './type.d';
 import { key } from './../../config/config';
 import { Arg, Mutation, Query, Resolver } from 'type-graphql';
 import {} from '../../config/config';
 import sha256 from 'crypto-js/sha256';
-import CreditCard from '../../models/creditcard';
-import { CreditCardInput } from './type';
+import CreditCard from '../../models/creditCard';
+import { CreditCardInput, UpdateCreditCard } from './creditCardType';
 
 @Resolver()
 export default class CreditCardResolver {

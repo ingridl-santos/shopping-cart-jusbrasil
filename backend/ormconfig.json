@@ -2,5 +2,9 @@
 	"type": "sqlite",
 	"database": "./db.sqlite3",
 	"entities": ["./src/models/*.ts"],
-	"synchronize": true
+	"synchronize": false,
+	"migrations": ["./src/db/migrations/*ts"],
+	"cli": {
+		"migrationsDir": "./src/db/migrations"
+	}
 }

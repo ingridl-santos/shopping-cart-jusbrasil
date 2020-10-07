@@ -4,7 +4,7 @@ import {
 	DecrementQuantityInput,
 	ProductInput,
 	UpdateProductInput,
-} from './type';
+} from './productType';
 
 @Resolver()
 export default class ProductResolver {
