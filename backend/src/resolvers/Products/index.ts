@@ -65,6 +65,12 @@ export default class ProductResolver {
 		return true;
 	}
 
+	@Query(() => Product, { nullable: true })
+	async getProduct(@Arg('id') id: string) {
+		const product = await Product.findOne({ id });
+		return product;
+	}
+
 	@Query(() => [Product])
 	async getAllProducts() {
 		return Product.find();

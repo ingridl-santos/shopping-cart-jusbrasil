@@ -3,7 +3,11 @@ import { Arg, Mutation, Query, Resolver } from 'type-graphql';
 import {} from '../../config/config';
 import sha256 from 'crypto-js/sha256';
 import CreditCard from '../../models/creditCard';
-import { CreditCardInput, UpdateCreditCard } from './creditCardType';
+import {
+	CreditCardInput,
+	CreditCardValidate,
+	UpdateCreditCard,
+} from './creditCardType';
 
 @Resolver()
 export default class CreditCardResolver {
@@ -60,6 +64,19 @@ export default class CreditCardResolver {
 		}
 		CreditCard.delete({ id });
 		return true;
+	}
+
+	@Query(() => CreditCard, { nullable: true })
+	async getCreditCard(
+		@Arg('input', () => CreditCardValidate) input: CreditCardValidate
+	) {
+		const creditCard = await CreditCard.findOne({
+			name: input.name,
+			number: input.number,
+			expiration: input.expiration,
+			cvv: input.cvv,
+		});
+		return creditCard;
 	}
 
 	@Query(() => [CreditCard])

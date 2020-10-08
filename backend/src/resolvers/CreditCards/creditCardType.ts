@@ -35,3 +35,18 @@ export class UpdateCreditCard {
 	@Field(() => Boolean, { nullable: true })
 	isValid: boolean;
 }
+
+@InputType()
+export class CreditCardValidate {
+	@Field()
+	name: string;
+
+	@Field()
+	number: string;
+
+	@Field()
+	expiration: string;
+
+	@Field()
+	cvv: string;
+}
