@@ -1,6 +1,5 @@
-import { key } from './../../config/config';
 import { Arg, Mutation, Query, Resolver } from 'type-graphql';
-import {} from '../../config/config';
+import { key } from '../../config/config';
 import sha256 from 'crypto-js/sha256';
 import CreditCard from '../../models/creditCard';
 import {

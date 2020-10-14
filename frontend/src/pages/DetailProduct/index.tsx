@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useParams } from 'react-router-dom';
-import { getProduct } from '../../graphql/Product/request';
+import { GetProduct } from '../../graphql/Product/request';
 import { Product } from '../../graphql/Product/types';
 import { ApplicationState } from '../../store/Reducers/rootReducer';
 import { toast } from 'react-toastify';
@@ -18,7 +18,7 @@ interface ParamType {
 
 function DetailProduct() {
 	const { id } = useParams<ParamType>();
-	const receivedProduct = getProduct(
+	const receivedProduct = GetProduct(
 		id,
 		'id, title, image, description, price, quantity',
 	);
@@ -83,7 +83,7 @@ function DetailProduct() {
 								<RemoveIcon />
 							</button>
 							<input type="number" value={amount} readOnly />
-							<button>
+							<button type="button" onClick={() => incrementAmount()}>
 								<AddIcon />
 							</button>
 						</div>
