@@ -21,7 +21,7 @@ const app = express();
 	app.use(cors());
 	apolloServer.applyMiddleware({ app, cors: false });
 	app.use(express.json());
-	app.listen(3333, () => {
-		console.log(`Server started on http://localhost:3333`);
+	app.listen(4000, () => {
+		console.log(`Server started on http://localhost:4000`);
 	});
 })();

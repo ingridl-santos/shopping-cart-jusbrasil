@@ -2,19 +2,19 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
+import { formatCurrency } from '../../utils/currencyFormat';
 import { GetAllProducts } from '../../graphql/Product/request';
 import { ApplicationState } from '../../store/Reducers/rootReducer';
-import { Container, TableProduct, TableTotal } from './styles';
 import { ProductInCart } from '../../store/Reducers/cart/types';
 import {
 	decrementAmount,
 	incrementAmount,
 	removeFromCart,
 } from '../../store/Reducers/cart/actions';
+import { Container, TableProduct, TableTotal } from './styles';
 import RemoveIcon from '@material-ui/icons/Remove';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveShoppingCartIcon from '@material-ui/icons/RemoveShoppingCart';
-import { formatCurrency } from '../../utils/currencyFormat';
 
 function Cart() {
 	const cart = useSelector((state: ApplicationState) => state.cart);
@@ -62,45 +62,43 @@ function Cart() {
 				<tbody>
 					{cart &&
 						cart.products &&
-						cart.products.map(products => {
-							return (
-								<tr key={products.product.id}>
-									<td>
-										<Link to={`/product/${products.product.id}`}>
-											<img
-												src={products.product.image}
-												alt={products.product.title}
-											/>
-										</Link>
-									</td>
-									<td>
-										<div>
-											<button
-												type="button"
-												onClick={() => decreaseAmount(products)}
-											>
-												<RemoveIcon />
-											</button>
-											<input type="number" value={products.amount} readOnly />
-											<button
-												type="button"
-												onClick={() => increaseAmount(products)}
-											>
-												<AddIcon />
-											</button>
-										</div>
-									</td>
-									<td>
+						cart.products.map(products => (
+							<tr key={products.product.id}>
+								<td>
+									<Link to={`/product/${products.product.id}`}>
+										<img
+											src={products.product.image}
+											alt={products.product.title}
+										/>
+									</Link>
+								</td>
+								<td>
+									<div>
 										<button
 											type="button"
-											onClick={() => handleRemoveProduct(products.product.id)}
+											onClick={() => decreaseAmount(products)}
 										>
-											<RemoveShoppingCartIcon />
+											<RemoveIcon />
 										</button>
-									</td>
-								</tr>
-							);
-						})}
+										<input type="number" value={products.amount} readOnly />
+										<button
+											type="button"
+											onClick={() => increaseAmount(products)}
+										>
+											<AddIcon />
+										</button>
+									</div>
+								</td>
+								<td>
+									<button
+										type="button"
+										onClick={() => handleRemoveProduct(products.product.id)}
+									>
+										<RemoveShoppingCartIcon />
+									</button>
+								</td>
+							</tr>
+						))}
 				</tbody>
 			</TableProduct>
 

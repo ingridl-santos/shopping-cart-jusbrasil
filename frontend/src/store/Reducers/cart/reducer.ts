@@ -41,7 +41,7 @@ function cart(
 					draft.totalAmount += action.amount * action.product.price;
 				}
 			});
-		case '@cart/REMOVE':
+		case '@cart/REMOVE': {
 			return produce(state, (draft: StateOfCart) => {
 				const productIndex = draft.products.findIndex(
 					product => product.product.id === action.id,
@@ -55,6 +55,7 @@ function cart(
 					draft.totalItems -= amount;
 				}
 			});
+		}
 		case '@cart/INCREMENT_AMOUNT': {
 			if (action.amount <= 0) {
 				return state;
@@ -76,7 +77,7 @@ function cart(
 			});
 		}
 
-		case '@cart/DECREMENT_AMOUNT':
+		case '@cart/DECREMENT_AMOUNT': {
 			return produce(state, (draft: StateOfCart) => {
 				const productIndex = draft.products.findIndex(
 					product => product.product.id === action.id,
@@ -91,13 +92,15 @@ function cart(
 						action.amount * draft.products[productIndex].product.price;
 				}
 			});
+		}
 
-		case '@cart/REMOVE_ALL':
+		case '@cart/REMOVE_ALL': {
 			return produce(state, (draft: StateOfCart) => {
 				draft.products = [];
 				draft.totalItems = 0;
 				draft.totalAmount = 0;
 			});
+		}
 		default:
 			return state;
 	}

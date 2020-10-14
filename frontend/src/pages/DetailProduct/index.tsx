@@ -4,11 +4,13 @@ import { Redirect, useParams } from 'react-router-dom';
 import { GetProduct } from '../../graphql/Product/request';
 import { Product } from '../../graphql/Product/types';
 import { ApplicationState } from '../../store/Reducers/rootReducer';
+
+import { addToCart } from '../../store/Reducers/cart/actions';
+import { formatCurrency } from '../../utils/currencyFormat';
+
+import { Container } from './styles';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { addToCart } from '../../store/Reducers/cart/actions';
-import { Container } from './styles';
-import { formatCurrency } from '../../utils/currencyFormat';
 import RemoveIcon from '@material-ui/icons/Remove';
 import AddIcon from '@material-ui/icons/Add';
 
@@ -71,7 +73,7 @@ function DetailProduct() {
 			{redirect && <Redirect to="/" />}
 			{product && (
 				<>
-					<img src={product.image} />
+					<img src={product.image} alt={product.title} />
 					<div>
 						<header>
 							<span>{product.description}</span>

@@ -16,14 +16,14 @@ interface CurrencyFormattedProduct {
 
 function Home() {
 	const data = GetAllProducts('id, title, image, description, price, quantity');
-	const receivedProducts: CurrencyFormattedProduct[] = data.map(product => ({
+	const productsReceived: CurrencyFormattedProduct[] = data.map(product => ({
 		...product,
 		priceFormatted: formatCurrency(product.price),
 	}));
 	const [products, setProducts] = useState<CurrencyFormattedProduct[]>();
 
 	useEffect(() => {
-		setProducts(receivedProducts);
+		setProducts(productsReceived);
 	}, [data]);
 
 	return (
@@ -31,24 +31,22 @@ function Home() {
 			<Header />
 			<ProductList>
 				{!!products &&
-					products.map(product => {
-						return (
-							<li key={product.id}>
-								<Details to={`product/${product.id}`}>
-									<img src={product.image} />
-									<strong>{product.title}</strong>
-									<span>{product.priceFormatted}</span>
-									{product.quantity > 0 ? (
-										<button type="button">
-											<span>Detalhes</span>
-										</button>
-									) : (
-										'Produto Indisponível'
-									)}
-								</Details>
-							</li>
-						);
-					})}
+					products.map(product => (
+						<li key={product.id}>
+							<Details to={`product/${product.id}`}>
+								<img src={product.image} alt={product.title} />
+								<strong>{product.title}</strong>
+								<span>{product.priceFormatted}</span>
+								{product.quantity > 0 ? (
+									<button type="button">
+										<span>Detalhes</span>
+									</button>
+								) : (
+									'Produto Indisponível'
+								)}
+							</Details>
+						</li>
+					))}
 			</ProductList>
 		</>
 	);

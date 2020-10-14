@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const Container = styled.header`
-	width: 100%;
+	width: 100vw;
 	margin: 0;
 	display: flex;
 	justify-content: space-between;
@@ -10,7 +10,7 @@ export const Container = styled.header`
 	background: #252035;
 
 	img {
-		margin: 5px 0px 5px 10px;
+		margin: 2px 0px 2px 8px;
 	}
 `;
 
@@ -40,7 +40,8 @@ export const Cart = styled(Link)`
 
 	p {
 		margin-top: 20px;
-		font: 12px 'Roboto', sans-serif;
+		font-size: 12px;
+		font-style: 'Roboto', sans-serif;
 		font-weight: bold;
 		color: #ffffff;
 	}
